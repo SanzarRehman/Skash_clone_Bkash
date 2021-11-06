@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,7 @@ public class login extends AppCompatActivity {
     public TextView s;
     EditText ageEditText,pinn;
    public String pinnn;
+   int b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,12 @@ public class login extends AppCompatActivity {
                 if(e.equals(pinnn))
                 {
                     s.setText("Success");
+
+                    Intent intent=new Intent(getApplicationContext(),MainActivity2.class);
+                    intent.putExtra("balance", b);
+                    startActivity(intent);
+                    finish();
+
                 }
                 else
                 {
@@ -113,6 +121,16 @@ public class login extends AppCompatActivity {
 
                 s.setText(pin);
                pinnn= pin;
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                int balance = jObject .getInt("balance");
+
+
+                b=balance;
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
